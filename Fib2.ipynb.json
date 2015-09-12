@@ -1,0 +1,238 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Exploring the Fibonacci Series using coding"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Using Python 2 as part of a Jupyter Notebook"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Users are able to interact with the content and make changes!!!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As well as being able to enter, edit and execute Python code, we can make comments on the lesson, and include accurate mathematical typesetting using LaTeX commands.\n",
+    "\n",
+    "The Fibonacci Series is often introduced as the first non-trivial series (without constant different or ratio between terms) and there are many stories about rabbits and sunflower heads attempting to hook youngsters.\n",
+    "\n",
+    "In this class we are going to look at how to generate terms in the FS - either writing a given number of terms, or writing all the terms up to a stated upper bound."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let us begin with starting terms 1 and 1, and generate subsequent terms by adding the two previous."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Call subsequent pairs of terms a and b, in that order\n",
+    "a = 1\n",
+    "b = 1\n",
+    "Fib = [a,b]\n",
+    "# Choose here the final number of terms we want in our list\n",
+    "n = 15\n",
+    "# The critical while loop - keep going until we have enough terms in the list Fib\n",
+    "while len(Fib) < n: # At the moment, len(Fib)=2 \n",
+    "    # Now give code to generate next term, and attach it to the list\n",
+    "    c = a+b\n",
+    "    Fib.append(c)\n",
+    "    # Now we need to re-label a and b ready for the next run through\n",
+    "    # a,b,c are 3 consecutive terms, and we relabel b and c as a and b (shift one place right)\n",
+    "    a = b\n",
+    "    b = c\n",
+    "# Finally we need to output what is in the list of Fib numbers\n",
+    "print(Fib)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You might find the programme easier to follow without my comments:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = 1\n",
+    "b = 1\n",
+    "Fib = [a,b]\n",
+    "n = 10\n",
+    "while len(Fib) < n:\n",
+    "    c = a+b\n",
+    "    Fib.append(c)\n",
+    "    a = b\n",
+    "    b = c\n",
+    "print(Fib)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Experiment with the above code - change how many terms are calculated, and what the starting points are. For which starting values will the series eventually settle into the standard one?\n",
+    "\n",
+    "Let's try to change the code now, and instead of calculating a set numbers of terms, let us caculate all the Fib numbers (in the standard series) up to a given value, say 100. Can you see how to make changes to the programme above. A solution is below."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = 1\n",
+    "b = 1\n",
+    "Fib = [a,b]\n",
+    "n = 100\n",
+    "while a+b <= n:\n",
+    "    c = a+b\n",
+    "    Fib.append(c)\n",
+    "    a = b\n",
+    "    b = c\n",
+    "print(Fib)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": true
+   },
+   "source": [
+    "One of the most quoted facts about the Fib Series is that the ratio of consecutive terms converges to the golden ratio, $$\\phi = \\frac{1+\\sqrt(5)}{2}\\approx 1.6.18\\dots$$ \n",
+    "\n",
+    "Let us now investigate the ratios using our code from above:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "The Golden ratio is 1.618034\n",
+      "The ratio of terms 1 and 1 is 1.000000\n",
+      "The ratio of terms 1 and 2 is 2.000000\n",
+      "The ratio of terms 2 and 3 is 1.500000\n",
+      "The ratio of terms 3 and 5 is 1.666667\n",
+      "The ratio of terms 5 and 8 is 1.600000\n",
+      "The ratio of terms 8 and 13 is 1.625000\n",
+      "The ratio of terms 13 and 21 is 1.615385\n",
+      "The ratio of terms 21 and 34 is 1.619048\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = 1.0\n",
+    "b = 1.0\n",
+    "Fib = [a,b]\n",
+    "n = 10\n",
+    "r = \"{0:.6f}\".format(1)\n",
+    "Ratio = [r]\n",
+    "p= (1+5**(.5))/2\n",
+    "print(\"The Golden ratio is %f\") %p\n",
+    "# Introduce ratio of consecutive terms, r, and list, Ratio\n",
+    "# Command \"{0:.6f}\".format(r) means we are working to 6 DP\n",
+    "while len(Fib) < n:\n",
+    "    c = a+b\n",
+    "    Fib.append(c)\n",
+    "    r = (b/a)\n",
+    "    print(\"The ratio of terms %d and %d is %f\") %(a, b, r)\n",
+    "    a = b\n",
+    "    b = c\n",
+    "    r=\"{0:.6f}\".format(r)\n",
+    "    Ratio.append(r)\n",
+    "# print(Fib)\n",
+    "# print(Ratio)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
